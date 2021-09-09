@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 
 function UseEffectComponent() {
-  const [val, setVal] = useState(1);
+  const [value, setValue] = useState(1);
+
+  // useEffect is called and passed  "timer" which adds one to the "value" every second (represented in milliseconds) passing a [] as the second argument this ensures
+  // the hook only runs on start up.
 
   useEffect(() => {
-    // useEffect is called and passed constant "timer" which adds one to the "value"
     const timer = window.setInterval(() => {
-      setVal((value) => value + 1);
+      setValue((value) => value + 1);
     }, 1000);
-    return () => window.clearInterval(timer);
+
+    return () => window.clearInterval(timer); // need more clarification on why clearing the interval is necessary
   }, []);
 
-  return <div>{val}</div>;
+  return <div>{value}</div>;
 }
 
 export default UseEffectComponent;
